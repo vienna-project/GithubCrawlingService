@@ -11,9 +11,9 @@ def parse_repository(query):
     if 'data' in query and 'repository' in query['data']:
         document = query['data']['repository']
         if not isinstance(document, dict):
-            raise ValueError(query)
+            raise ValueError(str(query))
     else:
-        raise ValueError("query" + query)
+        raise ValueError("query" + str(query))
 
     for k, v in document.items():
         if k == 'owner':
@@ -63,5 +63,5 @@ def parse_rateLimit(query):
         remain, resetAt = limit_result['remaining'], parse_date(limit_result['resetAt'])
         return remain, resetAt
     else:
-        raise ValueError()
+        raise ValueError(str(query))
 
